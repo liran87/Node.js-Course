@@ -1,0 +1,16 @@
+Exercise1:
+1. The requests processed sequentailly
+2. After 20 seconds
+3. All of them
+
+========================================
+Exercise2:
+1. Only one request completed in the same time
+
+========================================
+Exercise3:
+1. 4 requests completed in the same time
+
+========================================
+Exercise4:
+1. All of them in the same time
