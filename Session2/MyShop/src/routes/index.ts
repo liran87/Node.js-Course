@@ -1,1 +1,1 @@
-export { getProducts } from './productsHandlers';
+export { getProductById, getProducts } from './productsHandlers';

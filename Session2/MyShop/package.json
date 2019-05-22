@@ -8,7 +8,7 @@
     "build:clean": "rm -rf ./dist",
     "build": "npm run build:clean && npm run build:run",
     "serve": "node dist/index.js",
-    "start": "npm run build && npm run serve && npm run watch",
+    "start": "npm run build && npm run serve",
     "lint:ts": "./node_modules/.bin/tslint --project . --format codeFrame",
     "lint:ts:fix": "npm -s run lint:ts -- --fix",
     "watch:ts": "./node_modules/.bin/tsc -w",

@@ -20,13 +20,13 @@
   {
     "id": "4",
     "categoryId": "Meat",
-    "name": "Kebabs",
+    "name": "Kebab",
     "itemInStock": 45
   },
   {
     "id": "5",
     "categoryId": "Meat",
-    "name": "Hot dogs",
+    "name": "Hot dog",
     "itemInStock": 35
   },
   {
