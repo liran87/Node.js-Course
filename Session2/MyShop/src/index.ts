@@ -1,1 +1,4 @@
-console.log('MyShop');
+import { app } from './app';
+import { PORT } from './constants';
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

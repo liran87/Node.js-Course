@@ -1,0 +1,1 @@
+export { productsController } from './productsController';
