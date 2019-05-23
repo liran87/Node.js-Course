@@ -9,7 +9,6 @@ export const getProducts = (req: Request, res: Response) => {
 };
 
 export const getProductById = (req: Request, res: Response) => {
-  // TODO: finding existing project repeats in multiple routes, can reuse via multiple route handlers (using 'res.locals')
   const id = req.params.id;
   const existing = products.find(p => p.id === id);
 
@@ -17,8 +16,8 @@ export const getProductById = (req: Request, res: Response) => {
     res.sendStatus(400);
     return;
   }
+
   if (!existing) {
-    // TODO: sending 404 if existing is not found repeats in other routes, can reuse via multiple route handlers
     res.sendStatus(404);
     return;
   }
@@ -29,8 +28,57 @@ export const getProductById = (req: Request, res: Response) => {
 export const addProduct = (req: Request, res: Response) => {
   const product = req.body as Product;
 
+  if (product.name.length < 3) {
+    res.sendStatus(409);
+    return;
+  }
+
   product.id = (products.length + 1).toString();
   products.push(product);
 
   res.status(201).send(product);
+};
+
+export const updateProduct = (req: Request, res: Response) => {
+  const id = req.params.id;
+  const existing = products.find(p => p.id === id);
+
+  if (isNaN(id)) {
+    res.sendStatus(400);
+    return;
+  }
+
+  if (!existing) {
+    res.sendStatus(404);
+    return;
+  }
+
+  const product = req.body as Product;
+  if (product.name.length < 3) {
+    res.sendStatus(409);
+    return;
+  }
+
+  product.id = id;
+  Object.assign(existing, product);
+
+  res.send(product);
+};
+
+export const deleteProduct = (req: Request, res: Response) => {
+  const id = req.params.id;
+  const existingIndex = products.findIndex(p => p.id === id);
+
+  if (isNaN(id)) {
+    res.sendStatus(400);
+    return;
+  }
+
+  if (existingIndex === -1) {
+    res.sendStatus(404);
+    return;
+  }
+
+  products.splice(existingIndex, 1);
+  res.sendStatus(204);
 };
