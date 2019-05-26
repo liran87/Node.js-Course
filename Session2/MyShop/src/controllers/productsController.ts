@@ -1,14 +1,21 @@
 import { Application } from 'express';
-import { addProduct, deleteProduct, getProductById, getProducts, updateProduct } from '../routes/productsHandlers';
+import { isProductExist, isProductIdNumber, isProductNameCorrect } from '../middlewares/productsMiddlewares';
+import {
+  addProduct,
+  deleteProduct,
+  getProductById,
+  getProducts,
+  updateProduct,
+} from '../routes/api/products/productsRequestHandlers';
 
 export function productsController(app: Application) {
   app.get('/api/products', getProducts);
 
-  app.get('/api/products/:id', getProductById);
+  app.get('/api/products/:id', [isProductIdNumber, isProductExist, getProductById]);
 
-  app.post('/api/products', addProduct);
+  app.post('/api/products', [isProductNameCorrect, addProduct]);
 
-  app.put('/api/products/:id', updateProduct);
+  app.put('/api/products/:id', [isProductIdNumber, isProductExist, isProductNameCorrect, updateProduct]);
 
-  app.delete('/api/products/:id', deleteProduct);
+  app.delete('/api/products/:id', [isProductIdNumber, isProductExist, deleteProduct]);
 }
