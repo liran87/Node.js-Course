@@ -1,4 +1,4 @@
-import * as products from '../mock/products.json';
+import products from '../mock/products.json';
 import { Product } from '../models';
 
 interface Store {
