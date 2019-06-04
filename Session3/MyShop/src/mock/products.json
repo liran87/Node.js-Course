@@ -1,43 +1,43 @@
 [
   {
     "id": "1",
-    "categoryId": "Dairy",
+    "categoryId": "1",
     "name": "Milk",
     "itemInStock": 80
   },
   {
     "id": "2",
-    "categoryId": "Dairy",
+    "categoryId": "1",
     "name": "Cream cheese",
     "itemInStock": 40
   },
   {
     "id": "3",
-    "categoryId": "Dairy",
+    "categoryId": "1",
     "name": "Butter",
     "itemInStock": 35
   },
   {
     "id": "4",
-    "categoryId": "Meat",
+    "categoryId": "2",
     "name": "Kebab",
     "itemInStock": 45
   },
   {
     "id": "5",
-    "categoryId": "Meat",
+    "categoryId": "2",
     "name": "Hot dog",
     "itemInStock": 35
   },
   {
     "id": "6",
-    "categoryId": "Pastries",
+    "categoryId": "3",
     "name": "Bread",
     "itemInStock": 100
   },
   {
     "id": "7",
-    "categoryId": "Pastries",
+    "categoryId": "3",
     "name": "Pita",
     "itemInStock": 85
   }

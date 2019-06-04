@@ -10,7 +10,7 @@ export const getProducts = (req: Request, res: Response, next: NextFunction) => 
 
 export const getProductById = (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.id;
-  const existing = products.find(p => p.id === id);
+  const existing = products.find(product => product.id === id);
 
   res.send(existing);
 };
@@ -26,7 +26,7 @@ export const addProduct = (req: Request, res: Response, next: NextFunction) => {
 
 export const updateProduct = (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.id;
-  const existing = products.find(p => p.id === id);
+  const existing = products.find(product => product.id === id);
   const product = req.body as Product;
 
   product.id = id;
@@ -37,7 +37,7 @@ export const updateProduct = (req: Request, res: Response, next: NextFunction) =
 
 export const deleteProduct = (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.id;
-  const existingIndex = products.findIndex(p => p.id === id);
+  const existingIndex = products.findIndex(product => product.id === id);
 
   products.splice(existingIndex, 1);
   res.sendStatus(204);
