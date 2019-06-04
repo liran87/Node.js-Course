@@ -1,1 +1,0 @@
-export { productsController } from './productsController';

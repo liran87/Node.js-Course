@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { Product } from '../../../models';
-import { store } from '../../../store';
+import { Product } from '../../models';
+import { store } from '../../store';
 
 const products = store.products;
 

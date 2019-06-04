@@ -1,6 +1,6 @@
 import cors from 'cors';
 import express from 'express';
-import { productsController } from './controllers';
+import { config } from './routes';
 
 export const app = express();
 
@@ -9,6 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => res.send('MyShop API'));
+app.get('/', (req, res) => res.send('MyShop API Running'));
 
-productsController(app);
+Object.keys(config).forEach(k => {
+  const routeConfig = config[k];
+  app.use(routeConfig.prefix, routeConfig.router);
+});
