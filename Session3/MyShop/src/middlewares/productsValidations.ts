@@ -15,7 +15,7 @@ export const isProductIdNumber = (req: Request, res: Response, next: NextFunctio
 
 export const isProductExist = (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.id;
-  const existing = products.find(p => p.id === id);
+  const existing = products.find(product => product.id === id);
 
   if (!existing) {
     res.sendStatus(404);

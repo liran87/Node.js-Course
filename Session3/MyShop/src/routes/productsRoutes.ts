@@ -1,6 +1,6 @@
 import express from 'express';
 import { addProduct, deleteProduct, getProductById, getProducts, updateProduct } from '../controllers/products/';
-import { isProductExist, isProductIdNumber, isProductNameCorrect } from '../middlewares/productsMiddlewares';
+import { isProductExist, isProductIdNumber, isProductNameCorrect } from '../middlewares/productsValidations';
 
 export const router = express.Router();
 
