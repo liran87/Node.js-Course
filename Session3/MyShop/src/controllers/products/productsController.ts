@@ -8,6 +8,13 @@ export const getProducts = (req: Request, res: Response, next: NextFunction) => 
   res.send(products);
 };
 
+export const getProductsByCategory = (req: Request, res: Response, next: NextFunction) => {
+  const categoryId = req.params.id;
+  const categoryProducts = products.filter(product => product.categoryId === categoryId);
+
+  res.send(categoryProducts);
+};
+
 export const getProductById = (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.id;
   const existing = products.find(product => product.id === id);

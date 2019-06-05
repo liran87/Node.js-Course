@@ -1,2 +1,8 @@
-export { addProduct, deleteProduct, getProductById, getProducts, updateProduct } from './productsController';
-
+export {
+  addProduct,
+  deleteProduct,
+  getProductById,
+  getProducts,
+  getProductsByCategory,
+  updateProduct,
+} from './productsController';
