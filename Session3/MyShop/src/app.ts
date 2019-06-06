@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express from 'express';
+import { clientErrorHandler } from './middlewares/errorHandlers';
 import { config } from './routes';
 
 export const app = express();
@@ -15,3 +16,5 @@ Object.keys(config).forEach(k => {
   const routeConfig = config[k];
   app.use(routeConfig.prefix, routeConfig.router);
 });
+
+app.use(clientErrorHandler);

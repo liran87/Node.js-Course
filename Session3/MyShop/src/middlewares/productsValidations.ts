@@ -6,8 +6,17 @@ const products = store.products;
 
 export const isProductIdNumber = (req: Request, res: Response, next: NextFunction) => {
   if (isNaN(req.params.id)) {
-    res.sendStatus(400);
-    return;
+    throw new Error('400');
+  }
+
+  next();
+};
+
+export const isProductNameCorrect = (req: Request, res: Response, next: NextFunction) => {
+  const product = req.body as Product;
+
+  if (product.name.length < 3) {
+    throw new Error('409');
   }
 
   next();
@@ -18,18 +27,7 @@ export const isProductExist = (req: Request, res: Response, next: NextFunction) 
   const existing = products.find(product => product.id === id);
 
   if (!existing) {
-    res.sendStatus(404);
-    return;
-  }
-
-  next();
-};
-
-export const isProductNameCorrect = (req: Request, res: Response, next: NextFunction) => {
-  const product = req.body as Product;
-
-  if (product.name.length < 3) {
-    res.sendStatus(409);
+    res.sendStatus(404).end();
     return;
   }
 

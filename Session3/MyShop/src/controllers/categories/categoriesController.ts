@@ -40,5 +40,5 @@ export const deleteCategory = (req: Request, res: Response, next: NextFunction) 
   const existingIndex = categories.findIndex(category => category.id === id);
 
   categories.splice(existingIndex, 1);
-  res.sendStatus(204);
+  res.sendStatus(204).end();
 };

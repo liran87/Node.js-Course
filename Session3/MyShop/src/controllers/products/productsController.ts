@@ -47,5 +47,5 @@ export const deleteProduct = (req: Request, res: Response, next: NextFunction) =
   const existingIndex = products.findIndex(product => product.id === id);
 
   products.splice(existingIndex, 1);
-  res.sendStatus(204);
+  res.sendStatus(204).end();
 };
