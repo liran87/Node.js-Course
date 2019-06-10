@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Product } from '../../models';
 import { store } from '../../store';
+import { wrapAsyncAndSend } from '../../utils/asyncRouteHandler';
 
 const products = store.products;
 
@@ -15,12 +16,14 @@ export const getProductsByCategory = (req: Request, res: Response, next: NextFun
   res.send(categoryProducts);
 };
 
-export const getProductById = (req: Request, res: Response, next: NextFunction) => {
-  const id = req.params.id;
-  const existing = products.find(product => product.id === id);
+export const getProductById = wrapAsyncAndSend(
+  (req: Request, res: Response, next?: NextFunction): Promise<any> => {
+    const id = req.params.id;
+    const existing = products.find(product => product.id === id);
 
-  res.send(existing);
-};
+    return Promise.resolve(existing);
+  },
+);
 
 export const addProduct = (req: Request, res: Response, next: NextFunction) => {
   const product = req.body as Product;

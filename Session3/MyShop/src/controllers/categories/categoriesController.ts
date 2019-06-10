@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Category } from '../../models';
 import { store } from '../../store';
+import { wrapAsyncAndSend } from '../../utils/asyncRouteHandler';
 
 const categories = store.categories;
 
@@ -8,12 +9,14 @@ export const getCategories = (req: Request, res: Response, next: NextFunction) =
   res.send(categories);
 };
 
-export const getCategoryById = (req: Request, res: Response, next: NextFunction) => {
-  const id = req.params.id;
-  const existing = categories.find(category => category.id === id);
+export const getCategoryById = wrapAsyncAndSend(
+  (req: Request, res: Response, next?: NextFunction): Promise<any> => {
+    const id = req.params.id;
+    const existing = categories.find(category => category.id === id);
 
-  res.send(existing);
-};
+    return Promise.resolve(existing);
+  },
+);
 
 export const addCategory = (req: Request, res: Response, next: NextFunction) => {
   const Category = req.body as Category;
