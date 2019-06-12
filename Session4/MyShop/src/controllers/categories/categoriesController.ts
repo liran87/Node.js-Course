@@ -2,8 +2,10 @@ import { NextFunction, Request, Response } from 'express';
 import { Category } from '../../models';
 import { store } from '../../store';
 import { wrapAsyncAndSend } from '../../utils/asyncRouteHandler';
+import { createLogger } from '../../utils/winstonLogger';
 
 const categories = store.categories;
+const logger = createLogger('categoriesController');
 
 export const getCategories = (req: Request, res: Response, next: NextFunction) => {
   res.send(categories);
@@ -13,6 +15,7 @@ export const getCategoryById = wrapAsyncAndSend(
   (req: Request, res: Response, next?: NextFunction): Promise<any> => {
     const id = req.params.id;
     const existing = categories.find(category => category.id === id);
+    logger.info(`Requested category by id - ${id}`);
 
     return Promise.resolve(existing);
   },

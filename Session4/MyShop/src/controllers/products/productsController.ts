@@ -2,8 +2,10 @@ import { NextFunction, Request, Response } from 'express';
 import { Product } from '../../models';
 import { store } from '../../store';
 import { wrapAsyncAndSend } from '../../utils/asyncRouteHandler';
+import { createLogger } from '../../utils/winstonLogger';
 
 const products = store.products;
+const logger = createLogger('productsController');
 
 export const getProducts = (req: Request, res: Response, next: NextFunction) => {
   res.send(products);
@@ -20,6 +22,7 @@ export const getProductById = wrapAsyncAndSend(
   (req: Request, res: Response, next?: NextFunction): Promise<any> => {
     const id = req.params.id;
     const existing = products.find(product => product.id === id);
+    logger.info(`Requested product by id - ${id}`);
 
     return Promise.resolve(existing);
   },
