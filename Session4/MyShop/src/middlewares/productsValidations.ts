@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from 'express-serve-static-core';
 import { Product } from '../models';
 import { store } from '../store';
+import { getOrThrow } from '../validations';
+import { idSchema, productNameSchema } from '../validations/common';
 
 const products = store.products;
 
 export const isProductIdNumber = (req: Request, res: Response, next: NextFunction) => {
-  if (isNaN(req.params.id)) {
-    throw new Error('400');
-  }
+  getOrThrow<string>(req.params.id, idSchema);
 
   next();
 };
@@ -15,9 +15,7 @@ export const isProductIdNumber = (req: Request, res: Response, next: NextFunctio
 export const isProductNameCorrect = (req: Request, res: Response, next: NextFunction) => {
   const product = req.body as Product;
 
-  if (product.name.length < 3) {
-    throw new Error('409');
-  }
+  getOrThrow<string>(product.name, productNameSchema);
 
   next();
 };

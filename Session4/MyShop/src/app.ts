@@ -4,7 +4,7 @@ import expressWinston from 'express-winston';
 import winston from 'winston';
 import { clientErrorHandler } from './middlewares/errorHandlers';
 import { config } from './routes';
-import { alignedWithColorsAndTime } from './utils/winstonLogger';
+import { alignedWithColorsAndTime } from './utils/logger';
 
 export const app = express();
 

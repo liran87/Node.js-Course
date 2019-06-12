@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { Category } from '../../models';
 import { store } from '../../store';
 import { wrapAsyncAndSend } from '../../utils/asyncRouteHandler';
-import { createLogger } from '../../utils/winstonLogger';
+import { createLogger } from '../../utils/logger';
 
 const categories = store.categories;
 const logger = createLogger('categoriesController');
