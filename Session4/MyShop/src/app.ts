@@ -5,6 +5,9 @@ import winston from 'winston';
 import { clientErrorHandler } from './middlewares/errorHandlers';
 import { config } from './routes';
 import { alignedWithColorsAndTime } from './utils/logger';
+import { initPassport } from './utils/passport';
+
+initPassport();
 
 export const app = express();
 
@@ -20,7 +23,7 @@ app.use(
   }),
 );
 
-app.get('/', (req, res) => res.send('MyShop API Running'));
+app.get('/api', (req, res) => res.send('MyShop API Running'));
 
 Object.keys(config).forEach(k => {
   const routeConfig = config[k];
