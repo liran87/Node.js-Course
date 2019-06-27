@@ -4,7 +4,7 @@ import passport from 'passport';
 import { IVerifyOptions } from 'passport-local';
 import config, { KnownConfigKey } from '../utils/config';
 
-const jwtSecret = config.get(KnownConfigKey.jwtSecret);
+const jwtSecret = config.get(KnownConfigKey.JwtSecret);
 
 export const login = (req: Request, res: Response, next: NextFunction) => {
   passport.authenticate('local', { session: false }, (err: Error, user: any, info: IVerifyOptions) => {

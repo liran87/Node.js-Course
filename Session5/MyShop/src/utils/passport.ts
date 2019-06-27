@@ -25,7 +25,7 @@ export function initPassport() {
     new JwtStrategy(
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        secretOrKey: config.get(KnownConfigKey.jwtSecret),
+        secretOrKey: config.get(KnownConfigKey.JwtSecret),
       },
 
       (jwtPayload: UserCredential, callback) => callback(null, jwtPayload),

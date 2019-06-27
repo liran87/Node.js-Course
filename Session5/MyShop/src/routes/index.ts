@@ -8,7 +8,7 @@ interface RouteConfig {
   router: Router;
 }
 
-export const config: { [k: string]: RouteConfig } = {
+export const configRoutes: { [k: string]: RouteConfig } = {
   products: {
     prefix: '/api/products',
     router: productsRoutes,

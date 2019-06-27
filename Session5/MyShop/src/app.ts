@@ -3,7 +3,7 @@ import express from 'express';
 import expressWinston from 'express-winston';
 import winston from 'winston';
 import { clientErrorHandler } from './middlewares/errorHandlers';
-import { config } from './routes';
+import { configRoutes } from './routes';
 import { alignedWithColorsAndTime } from './utils/logger';
 import { initPassport } from './utils/passport';
 
@@ -25,8 +25,8 @@ app.use(
 
 app.get('/api', (req, res) => res.send('MyShop API Running'));
 
-Object.keys(config).forEach(k => {
-  const routeConfig = config[k];
+Object.keys(configRoutes).forEach(k => {
+  const routeConfig = configRoutes[k];
   app.use(routeConfig.prefix, routeConfig.router);
 });
 
