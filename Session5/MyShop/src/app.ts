@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import expressWinston from 'express-winston';
+import path from 'path';
 import winston from 'winston';
 import { clientErrorHandler } from './middlewares/errorHandlers';
 import { configRoutes } from './routes';
@@ -23,6 +24,7 @@ app.use(
   }),
 );
 
+app.use('/data', express.static(path.join(__dirname, 'public/data')));
 app.get('/api', (req, res) => res.send('MyShop API Running'));
 
 Object.keys(configRoutes).forEach(k => {
