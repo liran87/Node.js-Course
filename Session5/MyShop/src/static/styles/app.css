@@ -1,0 +1,9 @@
+.app-header {
+    height: 100px;
+    background-color: yellow;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

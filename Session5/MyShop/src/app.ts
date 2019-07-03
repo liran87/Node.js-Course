@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express from 'express';
+import exphbs from 'express-handlebars';
 import expressWinston from 'express-winston';
 import path from 'path';
 import winston from 'winston';
@@ -24,8 +25,20 @@ app.use(
   }),
 );
 
-app.use('/data', express.static(path.join(__dirname, 'public/data')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.get('/api', (req, res) => res.send('MyShop API Running'));
+
+app.set('views', path.join(__dirname, 'views'));
+app.engine(
+  'handlebars',
+  exphbs({
+    defaultLayout: 'main',
+    helpers: {
+      increment: (v: number) => v + 1,
+    },
+  }),
+);
+app.set('view engine', 'handlebars');
 
 Object.keys(configRoutes).forEach(k => {
   const routeConfig = configRoutes[k];

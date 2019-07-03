@@ -3,10 +3,10 @@ import { store } from '../store';
 
 export async function makeCalls(baseUrl: string) {
   const dataClient = request.defaults({
-    baseUrl: `${baseUrl}/data`,
+    baseUrl: `${baseUrl}/public`,
     json: true,
   });
 
-  store.products = await dataClient.get('/products.json');
-  store.categories = await dataClient.get('/categories.json');
+  store.products = await dataClient.get('/data/products.json');
+  store.categories = await dataClient.get('/data/categories.json');
 }

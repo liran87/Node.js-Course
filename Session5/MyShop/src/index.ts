@@ -1,6 +1,5 @@
 // tslint:disable: no-console
-
-import { makeCalls } from './utils/client';
+import { makeCalls } from './utils/clientHttp';
 import config, { KnownConfigKey } from './utils/config';
 config.init();
 import { app } from './app';
